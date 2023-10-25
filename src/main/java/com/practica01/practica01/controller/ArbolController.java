@@ -31,6 +31,7 @@ public class ArbolController {
         model.addAttribute("totalArboles", arboles.size());
         return "/arbol/listado";
     }
+    //comando de nuevo elemento
     @GetMapping("/nuevo")
     public String arbolNuevo(Arbol arbol) {
         return "/arbol/modifica";
@@ -41,7 +42,6 @@ public class ArbolController {
     
     //tabla de elementos de agregar
     
- 
     @PostMapping("/guardar")
     public String arbolGuardar(Arbol arbol,
             @RequestParam("imagenFile") MultipartFile imagenFile) {        
@@ -56,13 +56,13 @@ public class ArbolController {
         arbolService.save(arbol);
         return "redirect:/arbol/listado";
     }
-
+// comando de eliminacion
     @GetMapping("/eliminar/{id}")
     public String arbolEliminar(Arbol arbol) {
         arbolService.delete(arbol);
         return "redirect:/arbol/listado";
     }
-
+// modicacion de lista
     @GetMapping("/modificar/{id}")
     public String arbolModificar(Arbol arbol, Model model) {
         arbol = arbolService.getArbol(arbol);
