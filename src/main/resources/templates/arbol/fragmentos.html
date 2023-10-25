@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <head th:replace="~{layout/Plantilla :: head}">
+        <title>TechShop</title>
+    </head>
+    <body>
+
+        <!-- 1 Sección para crear el boton de agregar... llamará a una ventana modal-->
+        <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">   
+                        <button 
+                            type="button" 
+                            class="btn btn-primary btn-block bg-success" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#agregarArbol"
+
+                            >
+                            <i class="fas fa-plus"></i> Agregar Arbol <!-- [[#{arbol.agregar}]]-->
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section th:fragment="agregarArbol">
+            <div id="agregarArbol" 
+                 class="modal fade" 
+                 tabindex="-1" 
+                 aria-labelledby="exampleModalLabel" 
+                 aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white bg-success">
+                            <h5 class="modal-title">Agrega un Arbol<!--[[#{arbol.agregar}]]--></h5>
+                            <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div> 
+                        <form th:action="@{/arbol/guardar}" th:object="${arbol}"
+                              method="POST" class="was-validated" enctype="multipart/form-data">
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="nombreComun">Nombre común:</label>
+                                    <input type="text" class="form-control" name="nombreComun" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="tipoFlor">Tipo Flor:</label>
+                                    <input type="text" class="form-control" name="tipoFlor" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="durezaMadera">Dureza Madera:</label>
+                                    <input type="text" class="form-control" name="durezaMadera" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="color">Color:</label>
+                                    <input type="text" class="form-control" name="colorFlor" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="activo">Activo</label>
+                                    <input class="form-check-input" type="checkbox" name="activo" id="activo"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="imagen">Subir Imagen</label>
+                                    <input class="form-control" type="file" name="imagenFile" onchange="readURL(this);"/>
+                                    <img id="blah" src="#" alt="your image" height="200"/>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+    </body>
+</html>
