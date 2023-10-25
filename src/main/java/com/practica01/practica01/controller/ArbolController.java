@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.practica01.practica01.controller;
 
 import com.practica01.practica01.domain.Arbol;
@@ -18,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
- * @author arjoz
+ * @Diego Caceres Alvarado
  */
 @Controller
 @RequestMapping("/arbol")
@@ -34,6 +31,7 @@ public class ArbolController {
         model.addAttribute("totalArboles", arboles.size());
         return "/arbol/listado";
     }
+    //comando de nuevo elemento
     @GetMapping("/nuevo")
     public String arbolNuevo(Arbol arbol) {
         return "/arbol/modifica";
@@ -41,6 +39,8 @@ public class ArbolController {
 
     @Autowired
     private FirebaseStorageServiceImpl firebaseStorageService;
+    
+    //tabla de elementos de agregar
     
     @PostMapping("/guardar")
     public String arbolGuardar(Arbol arbol,
@@ -56,13 +56,13 @@ public class ArbolController {
         arbolService.save(arbol);
         return "redirect:/arbol/listado";
     }
-
+// comando de eliminacion
     @GetMapping("/eliminar/{id}")
     public String arbolEliminar(Arbol arbol) {
         arbolService.delete(arbol);
         return "redirect:/arbol/listado";
     }
-
+// modicacion de lista
     @GetMapping("/modificar/{id}")
     public String arbolModificar(Arbol arbol, Model model) {
         arbol = arbolService.getArbol(arbol);
