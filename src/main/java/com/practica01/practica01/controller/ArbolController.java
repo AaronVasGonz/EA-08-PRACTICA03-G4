@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.practica01.practica01.controller;
 
 import com.practica01.practica01.domain.Arbol;
@@ -18,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
- * @author arjoz
+ * @Diego Caceres Alvarado
  */
 @Controller
 @RequestMapping("/arbol")
@@ -42,6 +39,9 @@ public class ArbolController {
     @Autowired
     private FirebaseStorageServiceImpl firebaseStorageService;
     
+    //tabla de elementos de agregar
+    
+ 
     @PostMapping("/guardar")
     public String arbolGuardar(Arbol arbol,
             @RequestParam("imagenFile") MultipartFile imagenFile) {        
